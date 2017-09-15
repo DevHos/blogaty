@@ -85,6 +85,7 @@
     <form action="/posts/{{$post->id}}/comments" method="post">
     	{{csrf_field()}}
 	    <div class="row contact-form">
+	    	@if(Auth::guest())
 	        <div class="col-sm-6">
 	            <span class="input input--jiro">
 	                <input class="input__field input__field--jiro" name="author_name" type="text" id="name"/>
@@ -101,6 +102,7 @@
 	                </label>
 	            </span>
 	        </div>
+	        @endif
 	        <div class="col-sm-12">
 	            <span class="input textarea input--jiro">
 	                <textarea rows="4" cols="50" name="body" class="input__field input__field--jiro" type="text" id="message"></textarea>
@@ -115,6 +117,8 @@
 	            <button type="submit" class="btn">Submit</button>
 	        </div>
 	    </div>
+	    <br>
+	    @include ('layouts.errors')
     </form>
     
 </div>
