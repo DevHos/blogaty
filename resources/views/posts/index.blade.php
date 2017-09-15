@@ -10,7 +10,7 @@
 		    <div class="post-content">
 		        <ul class="list-inline list-unstyled side-meta hidden-xs">
 		            <li>AUTHOR <a href="#">Auther Deo</a></li>
-		            <li>DATE <a href="#">June14, 2016</a></li>
+		            <li>DATE <a href="#">{{$post->created_at->toFormattedDateString()}}</a></li>
 		        </ul>
 		        <div class="side-content">
 		            <a href="/posts/{{$post->id}}" class="overflow post-title">

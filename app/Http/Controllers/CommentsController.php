@@ -6,7 +6,7 @@ use App\Post;
 use App\Comment;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('posts.index', compact('posts'));
+        //
     }
 
     /**
@@ -35,35 +34,46 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Post $post)
+    {   
+        // create a new post using the request data
+        $comment = new Comment;
+
+        $this->validate(request(),[
+            'author_name' => 'required',
+            'author_email' => 'required',
+            'body' => 'required'
+        ]);
+
+        $comment->author_name = request('author_name');
+        $comment->author_email = request('author_email');
+        $comment->body = request('body');
+        $comment->author_id = 1;
+        $comment->post_id = $post->id;
+        //save it to the database 
+        $comment->save();
+        // redirect to the home page
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
-    {   
-        $next = Post::where('id', '>', $post->id)->first();
-        $previous = Post::where('id', '<', $post->id)->first();
-
-
-        return view('posts.show', compact('post'))->with('previous', $previous)->with('next', $next);
-
-        //return view('posts.show', compact('post'));
+    public function show(Comment $comment)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Comment $comment)
     {
         //
     }
@@ -72,10 +82,10 @@ class PostsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, post $post)
+    public function update(Request $request, Comment $comment)
     {
         //
     }
@@ -83,10 +93,10 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\post  $post
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Comment $comment)
     {
         //
     }
