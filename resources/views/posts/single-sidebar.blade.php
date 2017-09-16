@@ -3,14 +3,14 @@
     <img src="../images/sidebar/avatar.png" class="img-responsive">
     <h4><b>About me</b></h4>
     <p>
-        Hi! My name is Hanan Hamdy. Vehicula lacus sem felis aenean laoreet orci, elit porttitor dolor aliquet aspernatur phasellus tellus, at facilisi lorem.
+        {{$post->user->bio}}
     </p>
     <ul class="list-inline sidebar-social">
-        <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
-        <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
-        <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
-        <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
-        <li><a href="#"><i class="icon ion-social-instagram"></i></a></li>
+        <li><a href="{{$post->user->facebook}}"><i class="icon ion-social-facebook"></i></a></li>
+        <li><a href="{{$post->user->twitter}}"><i class="icon ion-social-twitter"></i></a></li>
+        <li><a href="{{$post->user->google}}"><i class="icon ion-social-googleplus"></i></a></li>
+        <li><a href="{{$post->user->linkedin}}"><i class="icon ion-social-linkedin"></i></a></li>
+        <li><a href="{{$post->user->instagram}}"><i class="icon ion-social-instagram"></i></a></li>
     </ul>
 </section>
 <!--Search-->
@@ -26,27 +26,15 @@
 <!--Recent Posts-->
 <section class="recent-posts">
     <h5>Recent Posts</h5>
+    @foreach ($posts as $post)
     <div class="recent-post overflow">
         <img src="../images/sidebar/recent-post-1.jpg" class="img-responsive pull-left">
         <div class="recent-content">
-            <a href="#" class="date">June 14, 2015</a>
-            <a href="#">Lorem Ipsum available right now.</a>
+            <a href="#" class="date">{{$post->created_at->toFormattedDateString()}}</a>
+            <a href="#">{{$post->title}}</a>
         </div>
     </div>
-    <div class="recent-post overflow">
-        <img src="../images/sidebar/recent-post-2.jpg" class="img-responsive pull-left">
-        <div class="recent-content">
-            <a href="#" class="date">June 14, 2015</a>
-            <a href="#">Lorem Ipsum available right now.</a>
-        </div>
-    </div>
-    <div class="recent-post overflow">
-        <img src="../images/sidebar/recent-post-3.jpg" class="img-responsive pull-left">
-        <div class="recent-content">
-            <a href="#" class="date">June 14, 2015</a>
-            <a href="#">Lorem Ipsum available right now.</a>
-        </div>
-    </div>
+    @endforeach
 </section>
 <!--Categories-->
 <section class="categories">

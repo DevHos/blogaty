@@ -48,7 +48,7 @@ class CommentsController extends Controller
         $comment->author_name = Auth::guest() ? request('author_name') : Auth::user()->name;
         $comment->author_email = Auth::guest() ? request('author_email') : Auth::user()->email;
         $comment->body = request('body');
-        $comment->author_id = auth()->id() ? auth()->id() : 0;
+        $comment->user_id = auth()->id() ? auth()->id() : 0;
         $comment->post_id = $post->id;
         //save it to the database 
         $comment->save();

@@ -2,15 +2,11 @@
     <div class="container">
         <span class="trend">TREND NEWS</span>
         <div class="trend-news">
+            @foreach($posts as $post)
             <div class="overflow">
-                <a href="#"><strong>13:45AM |</strong> Sodales ut consectetuer aliquam tellus suspendisse sociis</a>
+                <a href="#"><strong>{{$post->created_at->toFormattedDateString()}} |</strong> {{$post->title}}</a>
             </div>
-            <div class="overflow">
-                <a href="#"><strong>13:45AM |</strong> Vitae mauris vitae purus. Ultricies amet neque semper</a>
-            </div>
-            <div class="overflow">
-                <a href="#"><strong>13:45AM |</strong> Diam praesent, in sit felis, libero proin, nulla habitasse</a>
-            </div>
+            @endforeach
         </div>
         <ul class="list-inline pull-right hidden-sm hidden-xs">
             <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>

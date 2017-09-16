@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comment;
+use App\User;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -15,7 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -48,11 +49,13 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {   
+        $posts = Post::latest()->get(); // to view all posts in sidebar
+
         $next = Post::where('id', '>', $post->id)->first();
         $previous = Post::where('id', '<', $post->id)->first();
 
 
-        return view('posts.show', compact('post'))->with('previous', $previous)->with('next', $next);
+        return view('posts.show', compact(['post', 'posts']))->with('previous', $previous)->with('next', $next);
 
         //return view('posts.show', compact('post'));
     }

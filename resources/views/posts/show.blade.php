@@ -11,7 +11,7 @@
     </figure>
     <div class="post-content">
         <ul class="list-inline list-unstyled side-meta hidden-xs">
-            <li>AUTHOR <a href="#">Auther Deo</a></li>
+            <li>AUTHOR <a href="#">{{$post->user->name}}</a></li>
             <li>DATE <a href="#">{{$post->created_at->toFormattedDateString()}}</a></li>
         </ul>
         <div class="side-content">
@@ -51,15 +51,15 @@
         <img class="media-object" src="../images/single-post/avatar-1.jpg" alt="" style="width: 70px;height: 70px">
     </a>
     <div class="media-body">
-        <a href="#"><span class="fa fa-user"></span>Hanan Hamdy</a>
+        <a href="#"><span class="fa fa-user"></span>{{$post->user->name}}</a>
         <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
+            {{$post->user->bio}}
         </p>
-        <a href="#" class="single-post-date hidden-xs">UI DESIGNER</a>
+        <a href="#" class="single-post-date hidden-xs">{{$post->user->title}}</a>
     </div>
 </div>
 <div class="post comments">
-    <h4>Comments<span class="color-main">({{$post->comments->count()}})</span></h4>
+    <h4>Comments<span class="color-main"> ({{$post->comments->count()}})</span></h4>
     @foreach ($post->comments as $comment)
     <div class="media">
         <a class="media-left" href="#">
